@@ -18,6 +18,26 @@ import { Separator } from "../ui/separator";
 import { Skeleton } from "../ui/skeleton";
 import RejectCoreLoan from "./RejectCoreLoan";
 
+type LoanProps = {
+  _id: Id<"coreLoans">;
+  userId: Id<"users">;
+  name: string;
+  amountRequested: number;
+  loanDate: string;
+  status?: "pending" | "done";
+  guarantor1Name: string;
+  guarantor1Phone: string;
+  guarantor2Name: string;
+  guarantor2Phone: string;
+  attestation: string;
+  ippis: string;
+  location: string;
+  mobileNumber: string;
+  existingLoan: "yes" | "no";
+  accountNumber: string;
+  bank: string;
+};
+
 const ProcessingCoreLoans = () => {
   const [isLoading, setIsLoading] = useState<Id<"coreLoans"> | null>(null);
 
@@ -63,7 +83,7 @@ const ProcessingCoreLoans = () => {
 
   return (
     <div className='space-y-4'>
-      {loans.map((loan) => (
+      {loans.map((loan: LoanProps) => (
         <Card key={loan._id}>
           <CardHeader>
             <CardTitle className='text-2xl'>
