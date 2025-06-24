@@ -5,12 +5,12 @@ import { fetchQuery } from "convex/nextjs";
 
 interface PageProps {
   params: {
-    id: Id<"coreLoans">;
+    id: string;
   };
 }
 
 const PreviewLoan = async ({ params }: PageProps) => {
-  const loanId = params.id;
+  const loanId = params.id as Id<'coreLoans'>;
 
   const loan = await fetchQuery(api.coreLoans.getCoreLoanById, {
     loanId,
