@@ -1,12 +1,14 @@
 import PreviewCoreLoan from "@/components/coreLoans/PreviewCoreLoan";
 import { api } from "@/convex/_generated/api";
-import { Id } from "@/convex/_generated/dataModel";
 import { fetchQuery } from "convex/nextjs";
+import { Id } from "@/convex/_generated/dataModel";
 
-
-
-export default async function PreviewLoan({ params }: {params: {id: string}}) {
-  const loanId = params.id as Id<'coreLoans'>;
+export default async function PreviewLoan({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const loanId = params.id as Id<"coreLoans">;
 
   const loan = await fetchQuery(api.coreLoans.getCoreLoanById, {
     loanId,
@@ -25,5 +27,4 @@ export default async function PreviewLoan({ params }: {params: {id: string}}) {
       <PreviewCoreLoan loan={loan} />
     </div>
   );
-};
-
+}
