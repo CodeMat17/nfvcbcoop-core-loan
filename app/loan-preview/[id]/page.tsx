@@ -3,13 +3,9 @@ import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { fetchQuery } from "convex/nextjs";
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
 
-const PreviewLoan = async ({ params }: PageProps) => {
+
+export default async function PreviewLoan({ params }: {params: {id: string}}) {
   const loanId = params.id as Id<'coreLoans'>;
 
   const loan = await fetchQuery(api.coreLoans.getCoreLoanById, {
@@ -31,4 +27,3 @@ const PreviewLoan = async ({ params }: PageProps) => {
   );
 };
 
-export default PreviewLoan;
